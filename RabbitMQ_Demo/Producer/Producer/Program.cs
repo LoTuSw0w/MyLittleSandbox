@@ -11,10 +11,24 @@ using var channel = connection.CreateModel();
 
 channel.QueueDeclare(queue: "letterbox", durable: false, exclusive: false, autoDelete: false, arguments: null);
 
-var message = "HELLO THIS IS MY FIRST MESSAGE";
+var random = new Random();
 
-var encodedMessage = Encoding.UTF8.GetBytes(message);
+var messageId = 1;
 
-channel.BasicPublish("", "letterbox", null, encodedMessage);
+while (true)
+{
+    var publishingTime = random.Next(1, 4);
 
-Console.WriteLine($"Published message: {message}");
+    var message = $"HELLO THIS IS {messageId}";
+
+    var encodedMessage = Encoding.UTF8.GetBytes(message);
+
+    channel.BasicPublish("", "letterbox", null, encodedMessage);
+
+    Console.WriteLine($"Published message: {message}");
+
+    Task.Delay(TimeSpan.FromSeconds(publishingTime)).Wait();
+
+    messageId++;
+}
+
