@@ -8,6 +8,10 @@ namespace APIProjectWithRedis.Repository
 
         Platform? GetPlatformById(string id);
 
-        IEnumerable<Platform> GetAllPlatforms();
+        IEnumerable<Platform?>? GetAllPlatforms();
+
+        void DeletePlatform(string id);
+
+        void UpdatePlatform(Platform platform);
     }
 }

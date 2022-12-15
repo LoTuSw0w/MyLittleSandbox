@@ -1,4 +1,5 @@
 ﻿using APIProjectWithRedis.Models;
+using Microsoft.AspNetCore.Mvc;
 using StackExchange.Redis;
 using System.Text.Json;
 
@@ -24,20 +25,34 @@ namespace APIProjectWithRedis.Repository
 
             var serialPlatform = JsonSerializer.Serialize(platform);
 
-            db.StringSet(platform.Id, serialPlatform);
-
+            /*db.StringSet(platform.Id, serialPlatform);*/
+            /*db.SetAdd("platforms", serialPlatform);*/
+            db.HashSet("hashplatform", new HashEntry[] { new HashEntry(platform.Id, serialPlatform) });
         }
 
-        public IEnumerable<Platform> GetAllPlatforms()  
+        public IEnumerable<Platform?>? GetAllPlatforms()  
         {
-            throw new NotImplementedException();
+            var db = _redisConnector.GetDatabase();
+
+            //var set = db.SetMembers("platforms");
+
+            var hashSet = db.HashGetAll("hashplatform");
+
+            if(hashSet != null)
+            {
+                var returnSet = Array.ConvertAll(hashSet, value => JsonSerializer.Deserialize<Platform>(value.Value)).ToList();
+
+                return returnSet;
+            }
+
+            return null;
         }
 
         public Platform? GetPlatformById(string id)
         {
             var db = _redisConnector.GetDatabase();
 
-            var platform = db.StringGet(id);
+            var platform = db.HashGet("hashplatform", id);
 
             if (!string.IsNullOrEmpty(platform))
             {
@@ -45,6 +60,38 @@ namespace APIProjectWithRedis.Repository
             }
 
             return null;
+        }
+
+        public void DeletePlatform(string id)
+        {
+            var db = _redisConnector.GetDatabase();
+
+            var platform = db.HashGet("hashplatform", id);
+
+            if (!string.IsNullOrEmpty(platform))
+            {
+                db.HashDelete("hashplatform", id);
+            }
+            else
+            {
+                throw new ArgumentNullException(nameof(platform));
+            }
+        }
+
+        public void UpdatePlatform(Platform platform)
+        {
+            var db = _redisConnector.GetDatabase();
+
+            var toBeupdatedPlatform = db.HashGet("hashplatform", platform.Id);
+
+            if (!string.IsNullOrEmpty(toBeupdatedPlatform))
+            {
+                db.HashSet("hashplatform", new HashEntry[] { new HashEntry(platform.Id, JsonSerializer.Serialize(platform)) });
+            }
+            else
+            {
+                throw new ArgumentNullException(nameof(platform));
+            }
         }
     }
 }

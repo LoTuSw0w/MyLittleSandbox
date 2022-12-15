@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\GitRepos\\MyLittleSandbox\\APIProjectWithRedis\\APIProjectWithRedis\\APIProjectWithRedis.csproj": {}
+    "C:\\GitKraken\\MyLittleSandbox\\APIProjectWithRedis\\APIProjectWithRedis\\APIProjectWithRedis.csproj": {}
   },
   "projects": {
-    "C:\\GitRepos\\MyLittleSandbox\\APIProjectWithRedis\\APIProjectWithRedis\\APIProjectWithRedis.csproj": {
+    "C:\\GitKraken\\MyLittleSandbox\\APIProjectWithRedis\\APIProjectWithRedis\\APIProjectWithRedis.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitRepos\\MyLittleSandbox\\APIProjectWithRedis\\APIProjectWithRedis\\APIProjectWithRedis.csproj",
+        "projectUniqueName": "C:\\GitKraken\\MyLittleSandbox\\APIProjectWithRedis\\APIProjectWithRedis\\APIProjectWithRedis.csproj",
         "projectName": "APIProjectWithRedis",
-        "projectPath": "C:\\GitRepos\\MyLittleSandbox\\APIProjectWithRedis\\APIProjectWithRedis\\APIProjectWithRedis.csproj",
-        "packagesPath": "C:\\Users\\dung.luong\\.nuget\\packages\\",
-        "outputPath": "C:\\GitRepos\\MyLittleSandbox\\APIProjectWithRedis\\APIProjectWithRedis\\obj\\",
+        "projectPath": "C:\\GitKraken\\MyLittleSandbox\\APIProjectWithRedis\\APIProjectWithRedis\\APIProjectWithRedis.csproj",
+        "packagesPath": "C:\\Users\\dung2\\.nuget\\packages\\",
+        "outputPath": "C:\\GitKraken\\MyLittleSandbox\\APIProjectWithRedis\\APIProjectWithRedis\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dung.luong\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dung2\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -72,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

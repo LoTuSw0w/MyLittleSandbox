@@ -37,5 +37,40 @@ namespace APIProjectWithRedis.Controllers
 
             return CreatedAtRoute(nameof(GetPlatformById), new {Id = platform.Id}, platform);
         }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<Platform>> GetAllPlatforms()
+        {
+            return Ok(_repository.GetAllPlatforms());
+        }
+
+        [HttpDelete]
+        public ActionResult DeletePlatform(string id)
+        {
+            try
+            {
+                _repository.DeletePlatform(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex);
+            }
+            
+        }
+
+        [HttpPut]
+        public ActionResult UpdatePlatform(Platform platform)
+        {
+            try
+            {
+                _repository.UpdatePlatform(platform);
+                return Ok(platform);
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex);
+            }
+        }
     }
 }
