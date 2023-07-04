@@ -10,6 +10,8 @@ var keywords = map[string]TokenType{
 	"if":     IF,
 	"else":   ELSE,
 	"return": RETURN,
+	//type
+
 }
 
 func LookupIndent(indent string) TokenType {
@@ -33,25 +35,28 @@ const (
 	INT   = "INT"
 
 	//Operators
-	ASSIGN   = "="
-	PLUS     = "+"
-	MINUS    = "-"
-	BANG     = "!"
-	ASTERISK = "*"
-	SLASH    = "/"
-	LT       = "<"
-	GT       = ">"
-	EQ       = "=="
-	NOT_EQ   = "!="
+	ASSIGN          = "="
+	PLUS            = "+"
+	INCREMENT_PLUS  = "++"
+	DECREMENT_MINUS = "--"
+	MINUS           = "-"
+	BANG            = "!"
+	ASTERISK        = "*"
+	SLASH           = "/"
+	LT              = "<"
+	GT              = ">"
+	EQ              = "=="
+	NOT_EQ          = "!="
+	PLUS_SC         = "+="
+	MINUS_SC        = "-="
 
 	//Delimiters
 	COMMA     = ","
 	SEMICOLON = ";"
-
-	LPAREN = "("
-	RPAREN = ")"
-	LBRACE = "{"
-	RBRACE = "}"
+	LPAREN    = "("
+	RPAREN    = ")"
+	LBRACE    = "{"
+	RBRACE    = "}"
 
 	//Keywords
 	FUNCTION = "FUNCTION"

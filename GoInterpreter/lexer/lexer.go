@@ -38,6 +38,8 @@ func (l *Lexer) peekChar() byte {
 func (l *Lexer) NextToken() token.Token {
 	var tok token.Token
 
+	l.skipWhitespace()
+
 	switch l.ch {
 	case '=':
 		if l.peekChar() == '=' {
@@ -64,9 +66,29 @@ func (l *Lexer) NextToken() token.Token {
 	case ',':
 		tok = newToken(token.COMMA, l.ch)
 	case '+':
-		tok = newToken(token.PLUS, l.ch)
+		if l.peekChar() == '+' || l.peekChar() == '=' {
+			ch := l.ch
+			l.readChar()
+			if l.peekChar() == '+' {
+				tok = token.Token{Type: token.INCREMENT_PLUS, Literal: string(ch) + string(l.ch)}
+			} else {
+				tok = token.Token{Type: token.PLUS_SC, Literal: string(ch) + string(l.ch)}
+			}
+		} else {
+			tok = newToken(token.PLUS, l.ch)
+		}
 	case '-':
-		tok = newToken(token.MINUS, l.ch)
+		if l.peekChar() == '-' || l.peekChar() == '=' {
+			ch := l.ch
+			l.readChar()
+			if l.peekChar() == '-' {
+				tok = token.Token{Type: token.DECREMENT_MINUS, Literal: string(ch) + string(l.ch)}
+			} else {
+				tok = token.Token{Type: token.MINUS_SC, Literal: string(ch) + string(l.ch)}
+			}
+		} else {
+			tok = newToken(token.MINUS, l.ch)
+		}
 	case '*':
 		tok = newToken(token.ASTERISK, l.ch)
 	case '/':
